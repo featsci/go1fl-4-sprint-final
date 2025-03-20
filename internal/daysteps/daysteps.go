@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/featsci/go1fl-4-sprint-final/internal/spentcalories"
 )
 
 var (
@@ -20,19 +22,17 @@ func parsePackage(data string) (int, time.Duration, error) {
 		return 0, time.Duration(0), errors.New("data != 2")
 	}
 
-	counStep, err := strconv.Atoi(s[0])
+	countSteps, err := strconv.Atoi(s[0])
 	if err != nil {
-		fmt.Println(s[0])
 		return 0, time.Duration(0), err
 	}
 
-	tDuration, err := time.ParseDuration(s[1])
+	timeDuration, err := time.ParseDuration(s[1])
 	if err != nil {
-		fmt.Println(s[1])
 		return 0, time.Duration(0), err
 	}
 
-	return counStep, tDuration, nil
+	return countSteps, timeDuration, nil
 
 }
 
@@ -42,6 +42,20 @@ func parsePackage(data string) (int, time.Duration, error) {
 
 func DayActionInfo(data string, weight, height float64) string {
 	// ваш код ниже
-	// fmt.Println(parsePackage(data))
-	return fmt.Sprint(parsePackage(data))
+	countSteps, timeDuration, err := parsePackage(data)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	if countSteps <= 0 {
+		return ""
+	}
+	calories := spentcalories.WalkingSpentCalories(countSteps, weight, height, timeDuration)
+
+	distanceSteps := (float64(countSteps) / StepLength) / float64(1000)
+
+	s := fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.\n", countSteps, distanceSteps, calories)
+
+	return s
 }

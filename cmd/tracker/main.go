@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/featsci/go1fl-4-sprint-final/internal/daysteps"
+	"github.com/featsci/go1fl-4-sprint-final/internal/spentcalories"
 )
 
 func main() {
@@ -37,30 +38,30 @@ func main() {
 		fmt.Println(v)
 	}
 
-	// // тренировки
-	// trainings := []string{
-	// 	"3456,Ходьба,3h00m",
-	// 	"something is wrong",
-	// 	"678,Бег,0h5m",
-	// 	"1078,Бег,0h10m",
-	// 	",3456 Ходьба",
-	// 	"7892,Ходьба,3h10m",
-	// 	"15392,Бег,0h45m",
-	// }
+	// тренировки
+	trainings := []string{
+		"3456,Ходьба,3h00m",
+		"something is wrong",
+		"678,Бег,0h5m",
+		"1078,Бег,0h10m",
+		",3456 Ходьба",
+		"7892,Ходьба,3h10m",
+		"15392,Бег,0h45m",
+	}
 
-	// var (
-	// 	trainingInfo string
-	// 	trainingLog  []string
-	// )
+	var (
+		trainingInfo string
+		trainingLog  []string
+	)
 
-	// for _, v := range trainings {
-	// 	trainingInfo = spentcalories.TrainingInfo(v, weight, height)
-	// 	trainingLog = append(trainingLog, trainingInfo)
-	// }
+	for _, v := range trainings {
+		trainingInfo = spentcalories.TrainingInfo(v, weight, height)
+		trainingLog = append(trainingLog, trainingInfo)
+	}
 
-	// fmt.Println("Журнал тренировок")
+	fmt.Println("Журнал тренировок")
 
-	// for _, v := range trainingLog {
-	// 	fmt.Println(v)
-	// }
+	for _, v := range trainingLog {
+		fmt.Println(v)
+	}
 }
