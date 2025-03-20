@@ -98,8 +98,8 @@ func TrainingInfo(data string, weight, height float64) string {
 
 // Константы для расчета калорий, расходуемых при беге.
 const (
-	runningCaloriesmsMultiplier = 18.0 // множитель средней скорости.
-	runningCaloriesmsShift      = 20.0 // среднее количество сжигаемых калорий при беге.
+	runningCaloriesMeanSpeedMultiplier = 18.0 // множитель средней скорости.
+	runningCaloriesMeanSpeedShift      = 20.0 // среднее количество сжигаемых калорий при беге.
 )
 
 // RunningSpentCalories возвращает количество потраченных колорий при беге.
@@ -112,7 +112,7 @@ const (
 func RunningSpentCalories(steps int, weight float64, duration time.Duration) float64 {
 	// ваш код здесь
 	meanSpeed := meanSpeed(steps, duration)
-	return ((runningCaloriesmsMultiplier * meanSpeed) - runningCaloriesmsShift) * weight
+	return ((runningCaloriesMeanSpeedMultiplier * meanSpeed) - runningCaloriesMeanSpeedShift) * weight
 
 }
 
