@@ -19,7 +19,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	var s []string = strings.Split(data, ",")
 
 	if len(s) != 2 {
-		return 0, time.Duration(0), errors.New("data != 2")
+		return 0, 0, errors.New("data != 2")
 	}
 
 	countSteps, err := strconv.Atoi(s[0])
